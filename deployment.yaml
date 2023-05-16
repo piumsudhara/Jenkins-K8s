@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment #The name of the Kubernetes Deployment to be created in the Kubernetes cluster
+  labels:
+    app: jenkins-k8s
+spec:
+  replicas: 2 #The number of pods to be created in the Kubernetes cluster for the React.js application container
+  selector:
+    matchLabels:
+      app: jenkins-k8s
+  template:
+    metadata:
+      labels:
+        app: jenkins-k8s 
+    spec:
+      containers:
+      - name: jenkins-k8s #The name of the react.js application container
+        image: cloudlego/jenkins-k8s:latest #The Docker image for building the React.js application container
+        ports:
+        - containerPort: 3000 #The port for the React.js application   container
