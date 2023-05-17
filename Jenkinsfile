@@ -7,7 +7,7 @@ pipeline {
 	stages {
 		stage('Checkout Source') {
 			steps {
-				git 'https://github.com/piumsudhara/Jenkins-K8s.git'
+				checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/piumsudhara/Jenkins-K8s.git']]])
 			}
 		}
 		stage('Build image') {
